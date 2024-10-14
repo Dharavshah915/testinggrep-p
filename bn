@@ -16,7 +16,7 @@ then
 			if [[ $? -ne 0 ]]
 			then   
 				echo "EOF received, exiting..."
-                		exit 1
+                		exit 0
            		fi
 
 			for separate_name in $names
