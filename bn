@@ -1,0 +1,39 @@
+#!/bin/bash
+# bn program (bash assignment)
+#
+# Dharav Shah, oct 20th, 2024
+
+if [[ $# -eq 2 ]]
+then
+	if [[ $1 =~ ^[0-9]{4}$ ]] && [[ $2 =~ ^[fFmMbB]$ ]]
+	then
+		YEAR=$1
+		GENDER=$2
+		while true
+		do
+			read -p "Enter Your Baby Names" names
+
+			if [[ $? -ne 0 ]]
+			then   
+				echo "EOF received, exiting..."
+                		exit 1
+           		fi
+
+			for separate_name in $names
+            		do
+				TOTAL=$(find us_baby_names -name "yob${YEAR}.txt"|xargs ggrep -iP ".*,${GENDER},.*"| wc -l | xargs)
+				RANK=$(find us_baby_names -name "yob${YEAR}.txt"|xargs ggrep -iP ".*,${GENDER},.*"| ggrep -inP "\b${separate_name}\b,${GENDER}" | cut -d: -f1)
+				echo "${YEAR}: $separate_name ranked $RANK out of $TOTAL male names."
+			done
+		done
+	else
+		echo "NO"
+		exit 1
+	fi
+else
+	echo "NO"
+	exit 1
+fi
+	
+
+
