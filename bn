@@ -20,8 +20,8 @@ then
 
 			for separate_name in $names
             		do
-				TOTAL=$(find us_baby_names -name "yob${YEAR}.txt"|xargs ggrep -iP ".*,${GENDER},.*"| wc -l | xargs)
-				RANK=$(find us_baby_names -name "yob${YEAR}.txt"|xargs ggrep -iP ".*,${GENDER},.*"| ggrep -inP "\b${separate_name}\b,${GENDER}" | cut -d: -f1)
+				TOTAL=$(find us_baby_names -name "yob${YEAR}.txt"|xargs grep -iP ".*,${GENDER},.*"| wc -l | xargs)
+				RANK=$(find us_baby_names -name "yob${YEAR}.txt"|xargs grep -iP ".*,${GENDER},.*"| grep -inP "\b${separate_name}\b,${GENDER}" | cut -d: -f1)
 				echo "${YEAR}: $separate_name ranked $RANK out of $TOTAL male names."
 			done
 		done
