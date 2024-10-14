@@ -14,8 +14,7 @@ then
 			read -p "Enter Your Baby Names" names
 
 			if [[ $? -ne 0 ]]
-			then   
-				echo "EOF received, exiting..."
+			then   	
                 		exit 0
            		fi
 
